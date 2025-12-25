@@ -1149,7 +1149,7 @@ document.addEventListener('click', (e) => {
   // Ensure unique list and include current page
   const pages = Array.from(new Set([location.href, ...anchors]));
 
-  const selectors = ['.product-card', '.tech-card', '.ge-card', '.wa-card', '.ns-card', '.lr-card', '.bc-card'];
+  const selectors = ['.product-card'];
   let products = [];
   let loading = false;
   // In-memory caches to speed repeated searches during the session
@@ -1187,9 +1187,11 @@ document.addEventListener('click', (e) => {
         const doc = new DOMParser().parseFromString(html, 'text/html');
         let nodes = [];
         selectors.forEach(s => nodes.push(...Array.from(doc.querySelectorAll(s))));
-        if(nodes.length === 0){
-          nodes = Array.from(doc.querySelectorAll('div')).filter(d => d.querySelector('h3'));
-        }
+        // ❌ REMOVE fallback that scans all divs
+if(nodes.length === 0){
+  nodes = [];
+}
+
         // Filter nodes to ensure we only pick actual product cards (not subsection link cards)
         const productNodes = nodes.filter(n => {
           const cls = (n.className || '');
@@ -1368,6 +1370,7 @@ document.addEventListener('click', (e) => {
 </body>
 
 </html>
+
 
 
 
