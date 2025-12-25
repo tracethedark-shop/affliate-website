@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fitness & Lifestyle | Trace The Dark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== INTERNAL STYLESHEET ===== -->
+  <style>
+    /* ===============================
+       GLOBAL RESET
+    ================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #f6f7f8, #eef1f4);
+      color: #111827;
+    }
+
+    /* ===============================
+       HEADER & NAVIGATION
+    ================================ */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 22px;
+      background: linear-gradient(90deg, #0f172a, #2563eb, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .site-logo {
+      height: 28px;
+      width: auto;
+      filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000);
+      position: relative;
+      top: 1.5px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 15px;
+      transition: color 0.25s ease;
+    }
+
+    nav a:hover {
+      color: #111827;
+    }
+
+    /* ===============================
+       HERO SECTION
+    ================================ */
+    .fit-hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+      background: linear-gradient(180deg, #ffffff, #ecfdf5);
+    }
+
+    .fit-hero h1 {
+      font-size: 38px;
+    }
+
+    .fit-hero p {
+      margin-top: 12px;
+      color: #6b7280;
+    }
+
+    /* Search Bar */
+    .fit-search {
+      margin-top: 28px;
+      width: 340px;
+      max-width: 90%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #bbf7d0;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .fit-search:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    /* ===============================
+       PRODUCT GRID
+    ================================ */
+    .fit-grid {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px 70px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .fit-card {
+      background: linear-gradient(180deg, #ffffff, #ecfdf5);
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .fit-card:hover {
+      background: linear-gradient(180deg, #ffffff, #d1fae5);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .fit-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    .fit-card p {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* ===============================
+       SEARCH RESULTS GRID
+    ================================ */
+    #fitResults {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      padding: 0 20px;
+    }
+
+    /* ===============================
+       FOOTER
+    ================================ */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    /* ===============================
+       RESPONSIVE
+    ================================ */
+    @media (max-width: 768px) {
+      .fit-hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="site-header">
+  <div class="header-container">
+    <div class="site-name">Trace The Dark
+        <img src="transparent logo.png" alt="Site Logo" class="site-logo">
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION WITH SEARCH ===== -->
+<section class="fit-hero">
+  <h1>Fitness & Lifestyle</h1>
+  <p>Gym equipment, fitness tools, and healthy lifestyle essentials</p>
+  <input type="text" class="fit-search" placeholder="Search fitness & gym topics...">
+</section>
+
+<!-- ===== PRODUCT CATEGORY CARDS ===== -->
+<section class="fit-grid">
+
+  <a href="gym equipment.html" class="fit-card">
+    <h3>Gym Equipment</h3>
+    <p>Dumbbells, resistance bands, benches, and machines</p>
+  </a>
+
+  <a href="workout accessories.html" class="fit-card">
+    <h3>Workout Accessories</h3>
+    <p>Gloves, mats, belts, and support gear</p>
+  </a>
+
+  <a href="nutrition supplements.html" class="fit-card">
+    <h3>Nutrition & Supplements</h3>
+    <p>Protein, vitamins, and recovery essentials</p>
+  </a>
+
+  <a href="lifestyle recovery.html" class="fit-card">
+    <h3>Lifestyle & Recovery</h3>
+    <p>Sleep tools, posture aids, and wellness gear</p>
+  </a>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>
+    Disclosure: This page may contain affiliate links.
+    If you click and make a purchase, we may earn a commission at no extra cost to you.
+  </p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== CLIENT-SIDE SEARCH FOR GYM SUBCATEGORIES (cached + highlight) =====
+(function(){
+  const searchInput = document.querySelector('.fit-search'); if(!searchInput) return;
+  const resultsContainer = document.createElement('section'); resultsContainer.id='fitResults'; resultsContainer.style.maxWidth='1200px'; resultsContainer.style.margin='20px auto 80px'; resultsContainer.style.display='none'; searchInput.parentNode.insertBefore(resultsContainer, searchInput.nextSibling);
+  const subsectionAnchors = Array.from(document.querySelectorAll('.fit-grid .fit-card')).map(a=>a.getAttribute('href')).filter(Boolean).map(h=>new URL(h, location.href).href);
+  let products=[]; let loading=false; const pageCache=new Map(); const parsedCache=new Map(); let lastQuery='';
+  async function loadAll(){ if(loading) return; loading=true; try{ for(const u of subsectionAnchors){ let html = pageCache.has(u)?pageCache.get(u):null; if(!html){ try{ const r=await fetch(u).catch(()=>null); html=(r&&r.ok)?await r.text():null; if(html) pageCache.set(u, html);}catch(e){ html=null; } } if(!html) continue; const base=u; if(parsedCache.has(base)){ products.push(...parsedCache.get(base)); continue; } const doc=new DOMParser().parseFromString(html,'text/html'); const selectors=['.ge-card','.wa-card','.ns-card','.lr-card']; let nodes=[]; selectors.forEach(s=>nodes.push(...Array.from(doc.querySelectorAll(s)))); const parsed=[]; nodes.forEach(card=>{ const titleEl=card.querySelector('h3'); const descEl=card.querySelector('p'); const linkEl=card.querySelector('a'); if(titleEl){ const obj={ title:titleEl.textContent.trim(), desc: descEl?descEl.textContent.trim():'', link: linkEl? new URL(linkEl.getAttribute('href'), base).href:base }; parsed.push(obj); products.push(obj); } }); parsedCache.set(base, parsed); } } finally{ loading=false; } }
+  function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function highlightText(text,q){ if(!q) return text; try{ const re=new RegExp('('+escapeRegExp(q)+')','ig'); return text.replace(re,'<mark>$1</mark>'); }catch(e){ return text; } }
+  function render(items,q){ resultsContainer.innerHTML=''; if(items.length===0){ resultsContainer.innerHTML='<p style="color:#6b7280;text-align:center;padding:30px 0">No matching products found</p>'; return; } const summary=document.createElement('div'); summary.style.cssText='text-align:center;color:#374151;margin:12px 0;font-size:15px'; summary.innerText=`Showing ${items.length} result${items.length===1?'':'s'}`; resultsContainer.appendChild(summary); const grid=document.createElement('div'); grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;padding:0 20px;'; items.forEach(item=>{ const card=document.createElement('div'); card.style.cssText='background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:22px;'; const t=highlightText(item.title,q); const d=highlightText(item.desc,q); card.innerHTML=`<h3 style="font-size:18px;margin-bottom:8px">${t}</h3><p style="color:#6b7280;margin-bottom:14px;font-size:14px">${d}</p><a href="${item.link}" style="display:inline-block;padding:10px 16px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Check Price</a>`; grid.appendChild(card); }); resultsContainer.appendChild(grid); if(!document.getElementById('gmark')){ const s=document.createElement('style'); s.id='gmark'; s.innerHTML='#fitResults mark{background:#fff7cc;color:inherit;padding:0 2px;border-radius:2px;}'; document.head.appendChild(s); } }
+  function debounce(fn,ms=200){ let timeout; return (...args)=>{ clearTimeout(timeout); timeout=setTimeout(()=>fn.apply(this,args), ms); }; }
+  searchInput.addEventListener('input', debounce(async (e)=>{ const query=(e.target.value||'').trim().toLowerCase(); if(!query){ resultsContainer.style.display='none'; resultsContainer.innerHTML=''; return; } if(products.length===0 && !loading){ resultsContainer.innerHTML='<p style="color:#6b7280;text-align:center;padding:30px 0">Loading results...</p>'; resultsContainer.style.display='block'; await loadAll(); } let matches=products.filter(p=>(p.title+' '+p.desc).toLowerCase().includes(query)); const seen=new Set(); const unique=matches.filter(p=>{ const key=p.title+'|'+p.desc; if(seen.has(key)) return false; seen.add(key); return true; }); resultsContainer.style.display='block'; render(unique, query); },300));
+})();
+</script>
+
+</body>

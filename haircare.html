@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smartphones | Technology | Trace The Dark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ② CSS (INTERNAL) -->
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #f6f7f8, #eef1f4);
+      color: #111827;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+  
+.site-name {
+  display: inline-flex;      /* NOT flex on header */
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 22px;
+  background: linear-gradient(
+    90deg,
+    #0f172a,
+    #2563eb,
+    #0ea5e9
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* LOGO — NO CENTERING */
+
+.site-logo {
+  height: 28px;
+  width: auto;
+
+  filter:
+    drop-shadow(1px 0 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(0 1px 0 #000)
+    drop-shadow(0 -1px 0 #000);
+position: relative;
+top: 1.5px;   /* adjust between 1px–2px if needed */
+}
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #111827;
+    }
+
+    /* HEADER CURSOR EFFECT */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        700px circle at var(--x, 50%) var(--y, 50%),
+        rgba(37, 99, 235, 0.14),
+        rgba(37, 99, 235, 0.06),
+        transparent 45%
+      );
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    header.active::before {
+      opacity: 1;
+    }
+
+    /* HERO */
+    .sp-hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+      background: linear-gradient(180deg, #ffffff, #f9fafb);
+    }
+
+    .sp-hero h1 {
+      font-size: 38px;
+    }
+
+    .sp-hero p {
+      margin-top: 12px;
+      color: #6b7280;
+    }
+
+    /* SEARCH */
+    .sp-search {
+      display: block;
+      margin: 30px auto 40px;
+      width: 340px;
+      max-width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+    }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    /* PRODUCT CARD (REUSABLE) */
+    .product-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 22px;
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    .product-card a {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #2563eb;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .product-card a:hover {
+      background: #1d4ed8;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 768px) {
+      .sp-hero h1 {
+        font-size: 28px;
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+
+<header id="site-header">
+  <div class="header-container">
+    <div class="site-name">Trace The Dark
+        <img src="transparent logo.png" alt="Site Logo" class="site-logo">
+    </div>
+
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tech.html">Technology</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="sp-hero">
+  <h1>Hair Care</h1>
+  <p>Best shampoos, conditioners, and styling products</p>
+</section>
+
+<input
+  type="text"
+  id="phoneSearch"
+  class="sp-search"
+  placeholder="Search hair care products..."
+>
+
+<section class="product-grid" id="phoneGrid">
+
+  <div class="product-card" data-name="Samsung Galaxy M14">
+    <h3>Samsung Galaxy M14</h3>
+    <p>Budget 5G phone with long battery life</p>
+    <a href="#">Check Price</a>
+  </div>
+
+</section>
+
+<footer>
+  <p>
+    Disclosure: This page may contain affiliate links.
+    If you click and make a purchase, we may earn a commission at no extra cost to you.
+  </p>
+</footer>
+
+<!-- ③ JavaScript (INTERNAL) -->
+<script>
+  // HEADER CURSOR EFFECT
+  const header = document.getElementById("site-header");
+
+  header.addEventListener("mouseenter", () => {
+    header.classList.add("active");
+  });
+
+  header.addEventListener("mouseleave", () => {
+    header.classList.remove("active");
+  });
+
+  header.addEventListener("mousemove", (e) => {
+    const rect = header.getBoundingClientRect();
+    header.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    header.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+
+  // PRODUCT SEARCH — enhanced (debounce, counts, highlights)
+  (function(){
+    const phoneSearch = document.getElementById('phoneSearch');
+    if(!phoneSearch) return;
+
+    const resultsContainer = document.createElement('section');
+    resultsContainer.className = 'search-results';
+    resultsContainer.style.maxWidth = '1200px';
+    resultsContainer.style.margin = '20px auto 80px';
+    resultsContainer.style.display = 'none';
+    phoneSearch.parentNode.insertBefore(resultsContainer, phoneSearch.nextSibling);
+
+    let products = [];
+
+    function loadPageProducts(){
+      const grid = document.querySelector('.product-grid');
+      if(!grid) return;
+      const cards = Array.from(grid.querySelectorAll('.product-card'));
+      cards.forEach(card => {
+        const titleEl = card.querySelector('h3');
+        const descEl = card.querySelector('p');
+        const linkEl = card.querySelector('a');
+        if(titleEl){
+          products.push({
+            title: titleEl.textContent.trim(),
+            desc: descEl ? descEl.textContent.trim() : '',
+            link: linkEl ? linkEl.getAttribute('href') : '#'
+          });
+        }
+      });
+    }
+
+    function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\\]\\]/g,'\\$&'); }
+    function highlightText(text,q){ if(!q) return text; try{ const re=new RegExp('('+escapeRegExp(q)+')','ig'); return text.replace(re,'<mark>$1</mark>'); }catch(e){ return text; } }
+
+    function render(items, q){
+      resultsContainer.innerHTML = '';
+      if(items.length === 0){
+        resultsContainer.innerHTML = '<p style="color:#6b7280;text-align:center;padding:30px 0">No matching products</p>';
+        return;
+      }
+      const summary = document.createElement('div');
+      summary.style.cssText = 'text-align:center;color:#374151;margin:12px 0;font-size:15px';
+      summary.innerText = `Showing ${items.length} result${items.length===1?'':'s'}`;
+      resultsContainer.appendChild(summary);
+      const grid = document.createElement('div');
+      grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;padding:0 20px;';
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.style.cssText = 'background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:22px;';
+        const t = highlightText(item.title, q);
+        const d = highlightText(item.desc, q);
+        card.innerHTML = `<h3 style="font-size:18px;margin-bottom:8px">${t}</h3><p style="color:#6b7280;margin-bottom:14px;font-size:14px">${d}</p><a href="${item.link}" style="display:inline-block;padding:10px 16px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Check Price</a>`;
+        grid.appendChild(card);
+      });
+      resultsContainer.appendChild(grid);
+      if(!document.getElementById('gmark-haircare')){ const s=document.createElement('style'); s.id='gmark-haircare'; s.innerHTML='.search-results mark{background:#fff7cc;color:inherit;padding:0 2px;border-radius:2px;}'; document.head.appendChild(s); }
+    }
+
+    function debounce(fn, ms = 200){ let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => fn.apply(this, args), ms); }; }
+
+    loadPageProducts();
+
+    phoneSearch.addEventListener('input', debounce((e) => {
+      const query = (e.target.value || '').trim();
+      if(!query){ resultsContainer.style.display = 'none'; resultsContainer.innerHTML = ''; return; }
+      const qLower = query.toLowerCase();
+      const matches = products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(qLower));
+      resultsContainer.style.display = 'block';
+      render(matches, query);
+    }, 300));
+  })();
+</script>
+
+</body>
+</html>
