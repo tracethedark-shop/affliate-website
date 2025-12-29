@@ -350,6 +350,34 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
     }, 300));
   })();
 </script>
+  
+<script>
+document.querySelectorAll('.product-slider').forEach(slider => {
+  let slides = slider.querySelectorAll('.slide');
+  let index = 0;
 
+  slider.querySelector('.next').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  slider.querySelector('.prev').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index - 1 + slides.length) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 4000);
+});
+</script>
+
+
+  
 </body>
 </html>
+
