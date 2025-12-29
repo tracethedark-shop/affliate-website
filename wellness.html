@@ -470,59 +470,60 @@ document.querySelectorAll('.product-slider').forEach(slider => {
 
 <script>
 const searchInput = document.querySelector('.sp-search');
-const productCards = document.querySelectorAll('.product-card');
-const searchResults = document.getElementById('searchResults');
+const resultsBox = document.getElementById('searchResults');
+const products = document.querySelectorAll('.product-card');
 
 searchInput.addEventListener('input', () => {
   const query = searchInput.value.toLowerCase().trim();
-  searchResults.innerHTML = '';
-  
-  if (!query) {
-    searchResults.style.display = 'none';
-    return;
-  }
+  resultsBox.innerHTML = '';
 
-  let found = false;
+  if (query === '') return;
 
-  productCards.forEach(card => {
-    const name = card.dataset.name.toLowerCase();
-    if (name.includes(query)) {
-      found = true;
+  let found = 0;
 
-      const item = document.createElement('div');
-      item.className = 'search-item';
+  products.forEach(product => {
+    const name = product.dataset.name.toLowerCase();
+    const description = product.innerText.toLowerCase();
 
-      item.innerHTML = `
-        <h4>${card.dataset.name}</h4>
-        <button onclick="viewProduct('${card.id}')">View Product</button>
+    if (name.includes(query) || description.includes(query)) {
+      found++;
+
+      const id = product.id;
+
+      resultsBox.innerHTML += `
+        <div class="search-result-card">
+          <h3>${product.querySelector('h3').innerText}</h3>
+          <p>${product.querySelector('p').innerText}</p>
+
+          <button class="view-btn" onclick="scrollToProduct('${id}')">
+            View Product
+          </button>
+        </div>
       `;
-
-      searchResults.appendChild(item);
     }
   });
 
-  searchResults.style.display = found ? 'block' : 'none';
+  if (found === 0) {
+    resultsBox.innerHTML = `<p class="no-results">No products found</p>`;
+  }
 });
 
-function viewProduct(id) {
-  searchResults.style.display = 'none';
-  searchInput.value = '';
+function scrollToProduct(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
 
-  const product = document.getElementById(id);
-  if (product) {
-    product.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    product.classList.add('highlight');
+  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  target.classList.add('highlight');
 
-    setTimeout(() => {
-      product.classList.remove('highlight');
-    }, 1500);
-  }
+  setTimeout(() => target.classList.remove('highlight'), 1500);
 }
 </script>
+
 
   
 </body>
 </html>
+
 
 
 
