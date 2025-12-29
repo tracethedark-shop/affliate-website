@@ -247,6 +247,32 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
   background: rgba(0, 0, 0, 0.8);
 }
 
+.search-result-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.view-btn {
+  padding: 10px 16px;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view-btn:hover {
+  background: #000000;
+}
+
+.product-card.highlight {
+  outline: 3px solid #2563eb;
+  transition: outline 0.3s ease;
+}
 
     
   </style>
@@ -280,7 +306,7 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
   class="sp-search"
   placeholder="Search wellness products..."
 >
-<div id="searchResults" class="search-results"></div>
+<div id="searchResults"></div>
 
   
 <section class="product-grid" id="phoneGrid">
@@ -368,78 +394,53 @@ Model is wearing size M<br></p>
     header.style.setProperty("--y", `${e.clientY - rect.top}px`);
   });
 
-  // PRODUCT SEARCH — enhanced (debounce, counts, highlights)
-  (function(){
-    const phoneSearch = document.getElementById('phoneSearch');
-    if(!phoneSearch) return;
+const searchInput = document.querySelector('.sp-search');
+const resultsBox = document.getElementById('searchResults');
+const products = document.querySelectorAll('.product-card');
 
-    const resultsContainer = document.createElement('section');
-    resultsContainer.className = 'search-results';
-    resultsContainer.style.maxWidth = '1200px';
-    resultsContainer.style.margin = '20px auto 80px';
-    resultsContainer.style.display = 'none';
-    phoneSearch.parentNode.insertBefore(resultsContainer, phoneSearch.nextSibling);
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase().trim();
+  resultsBox.innerHTML = '';
 
-    let products = [];
+  if (query === '') return;
 
-    function loadPageProducts(){
-      const grid = document.querySelector('.product-grid');
-      if(!grid) return;
-      const cards = Array.from(grid.querySelectorAll('.product-card'));
-      cards.forEach(card => {
-        const titleEl = card.querySelector('h3');
-        const descEl = card.querySelector('p');
-        const linkEl = card.querySelector('a');
-        if(titleEl){
-          products.push({
-            title: titleEl.textContent.trim(),
-            desc: descEl ? descEl.textContent.trim() : '',
-            link: linkEl ? linkEl.getAttribute('href') : '#'
-          });
-        }
-      });
+  let found = 0;
+
+  products.forEach(product => {
+    const name = product.dataset.name.toLowerCase();
+    const description = product.innerText.toLowerCase();
+
+    if (name.includes(query) || description.includes(query)) {
+      found++;
+      const id = product.id;
+
+      resultsBox.innerHTML += `
+        <div class="search-result-card">
+          <h3>${product.querySelector('h3').innerText}</h3>
+          <p>${product.querySelector('p').innerText.substring(0,120)}...</p>
+          <button class="view-btn" onclick="scrollToProduct('${id}')">
+            View Product
+          </button>
+        </div>
+      `;
     }
+  });
 
-    function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\\]\\]/g,'\\$&'); }
-    function highlightText(text,q){ if(!q) return text; try{ const re=new RegExp('('+escapeRegExp(q)+')','ig'); return text.replace(re,'<mark>$1</mark>'); }catch(e){ return text; } }
+  if (found === 0) {
+    resultsBox.innerHTML = `<p class="no-results">No products found</p>`;
+  }
+});
 
-    function render(items, q){
-      resultsContainer.innerHTML = '';
-      if(items.length === 0){
-        resultsContainer.innerHTML = '<p style="color:#6b7280;text-align:center;padding:30px 0">No matching products</p>';
-        return;
-      }
-      const summary = document.createElement('div');
-      summary.style.cssText = 'text-align:center;color:#374151;margin:12px 0;font-size:15px';
-      summary.innerText = `Showing ${items.length} result${items.length===1?'':'s'}`;
-      resultsContainer.appendChild(summary);
-      const grid = document.createElement('div');
-      grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;padding:0 20px;';
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.style.cssText = 'background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:22px;';
-        const t = highlightText(item.title, q);
-        const d = highlightText(item.desc, q);
-        card.innerHTML = `<h3 style="font-size:18px;margin-bottom:8px">${t}</h3><p style="color:#6b7280;margin-bottom:14px;font-size:14px">${d}</p><a href="${item.link}" style="display:inline-block;padding:10px 16px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Check Price</a>`;
-        grid.appendChild(card);
-      });
-      resultsContainer.appendChild(grid);
-      if(!document.getElementById('gmark-wellness')){ const s=document.createElement('style'); s.id='gmark-wellness'; s.innerHTML='.search-results mark{background:#fff7cc;color:inherit;padding:0 2px;border-radius:2px;}'; document.head.appendChild(s); }
-    }
+function scrollToProduct(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
 
-    function debounce(fn, ms = 200){ let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => fn.apply(this, args), ms); }; }
+  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  target.classList.add('highlight');
 
-    loadPageProducts();
+  setTimeout(() => target.classList.remove('highlight'), 1500);
+}
 
-    phoneSearch.addEventListener('input', debounce((e) => {
-      const query = (e.target.value || '').trim();
-      if(!query){ resultsContainer.style.display = 'none'; resultsContainer.innerHTML = ''; return; }
-      const qLower = query.toLowerCase();
-      const matches = products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(qLower));
-      resultsContainer.style.display = 'block';
-      render(matches, query);
-    }, 300));
-  })();
 </script>
 
 
@@ -523,6 +524,7 @@ function scrollToProduct(id) {
   
 </body>
 </html>
+
 
 
 
