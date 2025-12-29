@@ -190,6 +190,39 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
         font-size: 28px;
       }
     }
+
+.product-slider {
+  position: relative;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.product-slider img {
+  width: 100%;
+  display: none;
+}
+
+.product-slider img.active {
+  display: block;
+}
+
+.product-slider .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.product-slider .prev { left: 8px; }
+.product-slider .next { right: 8px; }
+
+
     
   </style>
 </head>
@@ -226,6 +259,18 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
 <section class="product-grid" id="phoneGrid">
 
   <div class="product-card" data-name="Ceazur T-shirt">
+
+<div class="product-slider" data-index="0">
+  <div class="slides">
+    <img src="images/ceazur1.jpg" class="slide active">
+    <img src="images/ceazur2.jpg" class="slide">
+    <img src="images/ceazur3.jpg" class="slide">
+  </div>
+
+  <button class="nav prev">❮</button>
+  <button class="nav next">❯</button>
+</div>
+
     <h3>Ceazur T-Shirt</h3>
     <p>Ceazur Unisex Oversized Cotton T-Shirt – Black <br>
 
@@ -368,8 +413,37 @@ Model is wearing size M<br></p>
   })();
 </script>
 
+
+<script>
+document.querySelectorAll('.product-slider').forEach(slider => {
+  let slides = slider.querySelectorAll('.slide');
+  let index = 0;
+
+  slider.querySelector('.next').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  slider.querySelector('.prev').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index - 1 + slides.length) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 4000);
+});
+</script>
+
+
+  
 </body>
 </html>
+
 
 
 
