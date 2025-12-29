@@ -270,5 +270,32 @@ top: 1.5px;   /* adjust between 1px–2px if needed */
   phoneSearch.addEventListener('input', debounce((e)=>{ const q=(e.target.value||'').trim().toLowerCase(); let visible=0; phoneCards.forEach(card=>{ const titleEl=card.querySelector('h3'); const descEl=card.querySelector('p'); const origTitle=titleEl&&titleEl.dataset.orig?titleEl.dataset.orig:(titleEl?titleEl.textContent:''); const origDesc=descEl&&descEl.dataset.orig?descEl.dataset.orig:(descEl?descEl.textContent:''); if(!q){ card.style.display='block'; if(titleEl) titleEl.innerHTML=origTitle; if(descEl) descEl.innerHTML=origDesc; visible++; return; } const hay=(origTitle+' '+origDesc).toLowerCase(); const match=hay.includes(q); card.style.display=match?'block':'none'; if(match){ if(titleEl) titleEl.innerHTML=highlightText(origTitle,q); if(descEl) descEl.innerHTML=highlightText(origDesc,q); visible++; } else { if(titleEl) titleEl.innerHTML=origTitle; if(descEl) descEl.innerHTML=origDesc; } }); if(visible>0){ summary.style.display='block'; summary.innerText=`${visible} result${visible===1?'':'s'}`; } else { summary.style.display='block'; summary.innerText='No matching products'; } if(!document.getElementById('gmark-sp')){ const s=document.createElement('style'); s.id='gmark-sp'; s.innerHTML='.product-grid mark{background:#fff7cc;color:inherit;padding:0 2px;border-radius:2px;}'; document.head.appendChild(s); } },300));
 </script>
 
+<script>
+document.querySelectorAll('.product-slider').forEach(slider => {
+  let slides = slider.querySelectorAll('.slide');
+  let index = 0;
+
+  slider.querySelector('.next').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  slider.querySelector('.prev').addEventListener('click', () => {
+    slides[index].classList.remove('active');
+    index = (index - 1 + slides.length) % slides.length;
+    slides[index].classList.add('active');
+  });
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 4000);
+});
+</script>
+
+  
 </body>
 </html>
+
