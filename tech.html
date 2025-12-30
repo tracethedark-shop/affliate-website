@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Technology | Trace The Dark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ② CSS (INTERNAL, ORDERED) -->
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #f6f7f8, #eef1f4);
+      color: #111827;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+.site-name {
+  display: inline-flex;      /* NOT flex on header */
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 22px;
+  background: linear-gradient(
+    90deg,
+    #0f172a,
+    #2563eb,
+    #0ea5e9
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* LOGO — NO CENTERING */
+
+.site-logo {
+  height: 28px;
+  width: auto;
+
+  filter:
+    drop-shadow(1px 0 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(0 1px 0 #000)
+    drop-shadow(0 -1px 0 #000);
+position: relative;
+top: 1.5px;   /* adjust between 1px–2px if needed */
+}
+
+
+
+
+
+
+.site-name:hover {
+  opacity: 0.85;
+}
+
+
+
+.site-name {
+  display: inline-flex;      /* NOT flex on header */
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 22px;
+  background: linear-gradient(
+    90deg,
+    #0f172a,
+    #2563eb,
+    #0ea5e9
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* LOGO — NO CENTERING */
+
+.site-logo {
+  height: 28px;
+  width: auto;
+
+  filter:
+    drop-shadow(1px 0 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(0 1px 0 #000)
+    drop-shadow(0 -1px 0 #000);
+position: relative;
+top: 1.5px;   /* adjust between 1px–2px if needed */
+}
+
+
+
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #111827;
+    }
+
+    /* HEADER CURSOR EFFECT */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        700px circle at var(--x, 50%) var(--y, 50%),
+        rgba(37, 99, 235, 0.12),
+        rgba(37, 99, 235, 0.05),
+        transparent 45%
+      );
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    header.active::before {
+      opacity: 1;
+    }
+
+    /* HERO */
+    .tech-hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+      background: linear-gradient(180deg, #ffffff, #f9fafb);
+    }
+
+    .tech-hero h1 {
+      font-size: 38px;
+    }
+
+    .tech-hero p {
+      margin-top: 12px;
+      color: #4b5563;
+    }
+
+    .tech-search {
+      margin-top: 28px;
+      width: 340px;
+      max-width: 90%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+    }
+
+    /* GRID */
+    .tech-grid {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px 70px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .tech-card {
+      background: linear-gradient(180deg, #ffffff, #f9fafb);
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+
+    .tech-card:hover {
+      background: linear-gradient(180deg, #ffffff, #f1f5f9);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .tech-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .tech-card p {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 768px) {
+      .tech-hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+
+<style>
+/* FIX LINK STYLING FOR TECH CARDS */
+.tech-card {
+  text-decoration: none;   /* remove underline */
+  color: inherit;          /* keep original text color */
+}
+
+.tech-card:visited {
+  color: inherit;          /* prevent purple visited color */
+}
+
+.tech-card:hover {
+  text-decoration: none;   /* ensure no underline on hover */
+}
+
+
+
+
+/* FINAL LINK NORMALIZATION FOR TECH CARDS */
+.tech-card,
+.tech-card:link,
+.tech-card:visited,
+.tech-card:hover,
+.tech-card:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tech-card {
+  cursor: pointer;
+}
+
+/* Remove focus outline box */
+.tech-card:focus {
+  outline: none;
+}
+
+/* Optional: subtle active feedback */
+.tech-card:active {
+  transform: scale(0.99);
+}
+
+
+
+
+/* FIX GRID BREAKING ISSUE */
+.tech-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.tech-card {
+  display: block;          /* FIX: makes <a> behave like card */
+  width: 100%;             /* FIX: fills grid column */
+  box-sizing: border-box;  /* SAFETY */
+}
+
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+<header id="site-header">
+  <div class="header-container">
+    
+    <div class="site-name">Trace The Dark
+        <img src="transparent logo.png" alt="Site Logo" class="site-logo">
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<section class="tech-hero">
+  <h1>Technology</h1>
+  <p>Guides, reviews, and smart buying advice for tech products</p>
+  <input type="text" class="tech-search" placeholder="Search technology topics...">
+</section>
+
+<section class="tech-grid">
+    <div class="tech-cards">    
+   <a href="smartphone.html" class="tech-card">
+    <h3>Smartphones</h3>
+    <p>Latest phones, comparisons, and buying guides</p>
+  </a>
+
+  <a href="laptops.html" class="tech-card">
+    <h3>Laptops</h3>
+    <p>Work, gaming, and budget laptop recommendations</p>
+  </a>
+
+  <a href="accessories.html" class="tech-card">
+    <h3>Accessories</h3>
+    <p>Headphones, chargers, keyboards, and essentials</p>
+  </a>
+
+  <a href="smart-gadgets.html" class="tech-card">
+    <h3>Smart Gadgets</h3>
+    <p>Wearables, smart home devices, and innovations</p>
+  </a>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Disclosure: This page may contain affiliate links. If you click and make a purchase,
+    we may earn a commission at no extra cost to you.
+  </p>
+</footer>
+
+<!-- ③ JavaScript (INTERNAL, ORDERED) -->
+<script>
+  const header = document.getElementById("site-header");
+
+  header.addEventListener("mouseenter", () => {
+    header.classList.add("active");
+  });
+
+  header.addEventListener("mouseleave", () => {
+    header.classList.remove("active");
+  });
+
+  header.addEventListener("mousemove", (e) => {
+    const rect = header.getBoundingClientRect();
+    header.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    header.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+</script>
+
+<script>
+// ===== CROSS-SUBSECTION PRODUCT SEARCH FOR TECHNOLOGY PAGE =====
+// Searches across multiple tech subsection pages and displays unified results
+(function(){
+  const searchInput = document.querySelector('.tech-search');
+  if(!searchInput) return;
+
+  const resultsContainer = document.createElement('section');
+  resultsContainer.className = 'product-grid';
+  resultsContainer.style.maxWidth = '1200px';
+  resultsContainer.style.margin = '20px auto 80px';
+  resultsContainer.id = 'techResults';
+  resultsContainer.style.display = 'none';
+  searchInput.parentNode.insertBefore(resultsContainer, searchInput.nextSibling);
+
+  // Extract subsection URLs from tech card links
+  const subsectionAnchors = Array.from(document.querySelectorAll('.tech-cards .tech-card'))
+    .map(a => a.getAttribute('href'))
+    .filter(Boolean)
+    .map(h => new URL(h, location.href).href);
+
+  let products = [];
+  let loading = false;
+  const pageCache = new Map();
+  const parsedCache = new Map();
+  let lastQuery = '';
+
+  // Fetch and parse products from all subsection pages (with cache)
+  async function loadAll(){
+    if(loading) return;
+    loading = true;
+    try{
+      for(const url of subsectionAnchors){
+        let html = null;
+        if(pageCache.has(url)) html = pageCache.get(url);
+        else {
+          try{ const r = await fetch(url).catch(()=>null); html = (r && r.ok) ? await r.text() : null; if(html) pageCache.set(url, html); }catch(e){ html = null; }
+        }
+        if(!html) continue;
+        const base = url;
+        if(parsedCache.has(base)){
+          products.push(...parsedCache.get(base));
+          continue;
+        }
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const selectors = ['.product-card', '.ge-card', '.wa-card', '.ns-card', '.lr-card'];
+        let nodes = [];
+        selectors.forEach(s => nodes.push(...Array.from(doc.querySelectorAll(s))));
+        if(nodes.length === 0){ nodes = Array.from(doc.querySelectorAll('div')).filter(d => d.querySelector('h3')); }
+        const parsed = [];
+        nodes.forEach(card => {
+          const titleEl = card.querySelector('h3');
+          const descEl = card.querySelector('p');
+          const linkEl = card.querySelector('a[href]');
+          if(titleEl){ const obj = { title: titleEl.textContent.trim(), desc: descEl ? descEl.textContent.trim() : '', sourceUrl: base }; parsed.push(obj); products.push(obj); }
+        });
+        parsedCache.set(base, parsed);
+      }
+    } finally { loading = false; }
+  }
+
+  function escapeRegExp(str){ return String(str).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function highlightText(text, q){ if(!q) return text; try{ const re = new RegExp('(' + escapeRegExp(q) + ')','ig'); return text.replace(re, '<mark>$1</mark>'); }catch(e){ return text; } }
+
+  function render(items, q){
+    resultsContainer.innerHTML = '';
+    if(items.length === 0){ resultsContainer.innerHTML = '<p style="color:#6b7280;text-align:center;padding:30px 0">No matching products</p>'; return; }
+    const summary = document.createElement('div'); summary.style.cssText = 'text-align:center;color:#374151;margin:12px 0;font-size:15px'; summary.innerText = `Showing ${items.length} result${items.length===1? '':'s'}`; resultsContainer.appendChild(summary);
+    const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;padding:0 20px;';
+    items.forEach(item => { const card = document.createElement('div'); card.className = 'product-card'; card.style.cssText = 'background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:22px;'; const t = highlightText(item.title, q); const d = highlightText(item.desc, q); const btn = document.createElement('a'); btn.textContent = 'View Product'; btn.style.cssText = 'display:inline-block;padding:10px 16px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;cursor:pointer;'; btn.href = '#'; btn.onclick = (e) => { e.preventDefault(); const searchText = item.title.toLowerCase().trim(); const allCards = Array.from(document.querySelectorAll('.product-card, [data-name]')).filter(c => !resultsContainer.contains(c)); let found = false; for (let c of allCards) { const cardTitle = (c.getAttribute('data-name') || c.querySelector('h3')?.textContent || '').toLowerCase().trim(); if (cardTitle.includes(searchText) || searchText.includes(cardTitle)) { c.scrollIntoView({ behavior: 'smooth', block: 'center' }); c.style.outline = '3px solid #2563eb'; c.style.outlineOffset = '2px'; setTimeout(() => { c.style.outline = ''; c.style.outlineOffset = ''; }, 3000); found = true; break; } } if (!found && item.sourceUrl) { window.location.href = item.sourceUrl; } }; card.innerHTML = `<h3 style="font-size:18px;margin-bottom:8px">${t}</h3><p style="color:#6b7280;margin-bottom:14px;font-size:14px">${d}</p>`; card.appendChild(btn); grid.appendChild(card); });
+    resultsContainer.appendChild(grid);
+    if(!document.getElementById('gmark')){ const s = document.createElement('style'); s.id='gmark'; s.innerHTML='.product-grid mark{background:#fff7cc;color:inherit;padding:0 2px;border-radius:2px;}'; document.head.appendChild(s); }
+  }
+
+  function showLoading(){ resultsContainer.innerHTML = '<p style="color:#6b7280;text-align:center;padding:30px 0">Loading results…</p>'; resultsContainer.style.display = 'block'; }
+
+  function debounce(fn, ms = 200){ let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => fn.apply(this, args), ms); }; }
+
+  searchInput.addEventListener('input', debounce(async (e) => {
+    const query = (e.target.value || '').trim().toLowerCase();
+    if(!query){ resultsContainer.style.display = 'none'; resultsContainer.innerHTML = ''; return; }
+    if(products.length === 0 && !loading){ showLoading(); await loadAll(); }
+    let matches = products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(query));
+    const seen = new Set();
+    const unique = matches.filter(p => { const key = p.title + '|' + p.desc; if(seen.has(key)) return false; seen.add(key); return true; });
+    resultsContainer.style.display = 'block'; lastQuery = query; render(unique, query);
+  }, 300));
+})();
+</script>
+
+</body>
+</html>
